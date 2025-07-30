@@ -1,4 +1,8 @@
+import { useProducts } from "../context/ProductsContext";
+
 const ProductsPage = () => {
+  const products = useProducts();
+  console.log(products);
   return <div>ProductsPage</div>;
 };
 
