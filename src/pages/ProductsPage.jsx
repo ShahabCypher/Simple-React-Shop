@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { ImSearch } from "react-icons/im";
 import { FaListUl } from "react-icons/fa";
 
 import { useProducts } from "../context/ProductsContext";
 import Card from "../components/Card";
 import Loader from "../components/Loader";
-import { searchProducts, filterProducts } from "../helpers/helper";
+import {
+  searchProducts,
+  filterProducts,
+  createQueryObject,
+} from "../helpers/helper";
 
 import styles from "./styles/ProductsPage.module.css";
 
@@ -16,11 +21,14 @@ const ProductsPage = () => {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState({});
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   useEffect(() => {
     setDisplayedProducts(products);
   }, [products]);
 
   useEffect(() => {
+    setSearchParams(query);
     let finalProducts = searchProducts(products, query.search);
     finalProducts = filterProducts(finalProducts, query.category);
 
@@ -28,7 +36,7 @@ const ProductsPage = () => {
   }, [query]);
 
   const searchHandler = () => {
-    setQuery((query) => ({ ...query, search }));
+    setQuery((query) => createQueryObject(query, { search }));
   };
 
   const categoryHandler = (e) => {
@@ -36,7 +44,7 @@ const ProductsPage = () => {
     const category = e.target.innerText.toLowerCase();
 
     if (tagName !== "LI") return;
-    setQuery((query) => ({ ...query, category }));
+    setQuery((query) => createQueryObject(query, { category }));
   };
 
   return (
