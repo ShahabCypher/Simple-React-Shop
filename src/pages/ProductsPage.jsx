@@ -10,6 +10,7 @@ import {
   searchProducts,
   filterProducts,
   createQueryObject,
+  getInitialQuery,
 } from "../helpers/helper";
 
 import styles from "./styles/ProductsPage.module.css";
@@ -25,10 +26,12 @@ const ProductsPage = () => {
 
   useEffect(() => {
     setDisplayedProducts(products);
+    setQuery(getInitialQuery(searchParams));
   }, [products]);
 
   useEffect(() => {
     setSearchParams(query);
+    setSearch(query.search || "");
     let finalProducts = searchProducts(products, query.search);
     finalProducts = filterProducts(finalProducts, query.category);
 
