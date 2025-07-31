@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ImSearch } from "react-icons/im";
+import { FaListUl } from "react-icons/fa";
 
 import { useProducts } from "../context/ProductsContext";
 import Card from "../components/Card";
@@ -13,6 +14,13 @@ const ProductsPage = () => {
   const [search, setSearch] = useState("");
 
   const searchHandler = () => {};
+
+  const categoryHandler = (e) => {
+    const { tagName } = e.target;
+    const category = e.target.innerText.toLowerCase();
+
+    if (tagName !== "LI") return;
+  };
 
   return (
     <>
@@ -34,7 +42,19 @@ const ProductsPage = () => {
             <Card key={p.id} data={p} />
           ))}
         </div>
-        <div></div>
+        <div>
+          <div>
+            <FaListUl />
+            <p>Categories</p>
+          </div>
+          <ul onClick={categoryHandler}>
+            <li>All</li>
+            <li>Electronics</li>
+            <li>Jewelery</li>
+            <li>Men's Clothing</li>
+            <li>Women's Clothing</li>
+          </ul>
+        </div>
       </div>
     </>
   );
