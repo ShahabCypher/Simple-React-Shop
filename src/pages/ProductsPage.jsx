@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { ImSearch } from "react-icons/im";
 import { FaListUl } from "react-icons/fa";
 
-import { useProducts } from "../context/ProductsContext";
 import Card from "../components/Card";
 import Loader from "../components/Loader";
+import SearchBox from "../components/SearchBox";
+import { useProducts } from "../context/ProductsContext";
 import {
   searchProducts,
   filterProducts,
@@ -38,10 +38,6 @@ const ProductsPage = () => {
     setDisplayedProducts(finalProducts);
   }, [query]);
 
-  const searchHandler = () => {
-    setQuery((query) => createQueryObject(query, { search }));
-  };
-
   const categoryHandler = (e) => {
     const { tagName } = e.target;
     const category = e.target.innerText.toLowerCase();
@@ -52,17 +48,7 @@ const ProductsPage = () => {
 
   return (
     <>
-      <div>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value.toLowerCase())}
-        />
-        <button onClick={searchHandler}>
-          <ImSearch />
-        </button>
-      </div>
+      <SearchBox search={search} setSearch={setSearch} setQuery={setQuery} />
       <div className={styles.container}>
         <div className={styles.products}>
           {!displayedProducts.length && <Loader />}
