@@ -1,6 +1,6 @@
 # Simple React Shop
 
-A mini e-commerce application built with React. This project allows users to browse or search products, filter by category, add items to a cart, and proceed through a checkout process—all in a simple and responsive interface.
+A mini e-commerce application built with React. This project allows users to browse or search products, filter by category, add items to a cart, and proceed through a checkout process—all in a simple and responsive interface using [fakestoreapi.com](https://fakestoreapi.com/) API.
 
 ## Features
 
