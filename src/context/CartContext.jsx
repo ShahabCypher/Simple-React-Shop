@@ -20,6 +20,26 @@ const reducer = (state, action) => {
         ...sumProducts(state.selectedItems),
       };
 
+    case "INCREASE":
+      const indexI = state.selectedItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.selectedItems[indexI].quantity++;
+      return {
+        ...state,
+        ...sumProducts(state.selectedItems),
+      };
+
+    case "DECREASE":
+      const indexD = state.selectedItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.selectedItems[indexD].quantity--;
+      return {
+        ...state,
+        ...sumProducts(state.selectedItems),
+      };
+
     case "REMOVE_ITEM":
       const newSelectedItems = state.selectedItems.filter(
         (item) => item.id !== action.payload.id
