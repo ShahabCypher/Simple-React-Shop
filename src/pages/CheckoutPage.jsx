@@ -1,3 +1,5 @@
+import { IoBagHandleOutline } from "react-icons/io5";
+
 import CartCard from "../components/CartCard";
 import CartSidebar from "../components/CartSidebar";
 import { useCart } from "../context/CartContext";
@@ -12,7 +14,8 @@ const CheckoutPage = () => {
   if (!state.itemsCounter) {
     return (
       <div className={styles.empty}>
-        <span>Empty Cart</span>
+        <IoBagHandleOutline />
+        <span>No products selected yet...</span>
       </div>
     );
   }
