@@ -1,15 +1,13 @@
 import { IoBagHandleOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 import CartCard from "../components/CartCard";
 import CartSidebar from "../components/CartSidebar";
-import { useCart } from "../context/CartContext";
 
 import styles from "./styles/CheckoutPage.module.css";
 
 const CheckoutPage = () => {
-  const [state, dispatch] = useCart();
-
-  const clickHandler = (type, payload) => dispatch({ type, payload });
+  const state = useSelector((store) => store.cart);
 
   if (!state.itemsCounter) {
     return (
@@ -22,14 +20,10 @@ const CheckoutPage = () => {
 
   return (
     <div className={styles.container}>
-      <CartSidebar state={state} clickHandler={clickHandler} />
+      <CartSidebar state={state} />
       <div className={styles.products}>
         {state.selectedItems.map((product) => (
-          <CartCard
-            key={product.id}
-            data={product}
-            clickHandler={clickHandler}
-          />
+          <CartCard key={product.id} data={product} />
         ))}
       </div>
     </div>
