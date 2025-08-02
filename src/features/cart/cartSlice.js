@@ -4,7 +4,7 @@ import { sumPrice, sumQuantity } from "../../helpers/helper";
 const initialState = {
   selectedItems: [],
   itemsCounter: 0,
-  totalPrice: 0,
+  total: 0, // Fixed the property name from totalPrice to total
   checkout: false,
 };
 
@@ -25,8 +25,8 @@ const cartSlice = createSlice({
         (i) => i.id !== action.payload.id
       );
       state.selectedItems = newSelectedItems;
-      state.total = sumPrice(state.selectedItems);
-      state.itemsCounter = sumQuantity(state.selectedItems);
+      state.total = sumPrice(newSelectedItems);
+      state.itemsCounter = sumQuantity(newSelectedItems);
     },
     increase: (state, action) => {
       const index = state.selectedItems.findIndex(
@@ -49,6 +49,7 @@ const cartSlice = createSlice({
       state.checkout = true;
       state.total = 0;
       state.itemsCounter = 0;
+      localStorage.removeItem("cart");
     },
   },
 });
