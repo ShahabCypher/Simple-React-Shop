@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
-
-import { useCart } from "../context/CartContext";
 
 import styles from "./styles/Layout.module.css";
 
 const Layout = ({ children }) => {
-  const [state] = useCart();
+  const state = useSelector((store) => store.cart);
+
   return (
     <>
       <header className={styles.header}>
