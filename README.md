@@ -9,10 +9,12 @@ A mini e-commerce application built with React. This project allows users to bro
 - Search products
 - Add to cart functionality
 - Checkout process
+- State management with Redux Toolkit
 
 ## Technologies Used
 
 - [React](https://reactjs.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
 - [CSS Modules](https://github.com/css-modules/css-modules)
 
 ## License
