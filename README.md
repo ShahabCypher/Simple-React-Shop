@@ -21,4 +21,6 @@ A mini e-commerce application built with React. This project allows users to bro
 
 This project is licensed under the MIT License.
 
-Note: This project was built as part of a React course on [BotoStart](https://botostart.ir/)
+## Notes
+
+- This project was built as part of a React course on [BotoStart](https://botostart.ir/)
